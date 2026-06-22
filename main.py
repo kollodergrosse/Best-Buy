@@ -88,8 +88,12 @@ def start(best_buy):
         for number, action in actions.items():
             print(f"{number}. {action[0]}")
 
-        user_input = input("Please select an action: ")
-        actions[user_input][1](best_buy)
+        try:
+            user_input = input("Please select an action: ")
+            actions[user_input][1](best_buy)
+
+        except KeyError as e:
+            print("Please enter a valid number!", e)
 
 
 if __name__ == '__main__':
