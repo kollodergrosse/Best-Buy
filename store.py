@@ -7,6 +7,7 @@ class Store:
 
 
     def add_product(self, product):
+        """adds a new product to the store"""
         if isinstance(product, Product):
             if product not in self.products:
                 self.products.append(product)
@@ -22,6 +23,7 @@ class Store:
 
 
     def remove_product(self, product):
+        """removes a product from the store"""
         if isinstance(product, Product):
             if product in self.products:
                 self.products.remove(product)
@@ -35,6 +37,7 @@ class Store:
 
 
     def get_total_quantity(self):
+        """returns the total quantity of the store"""
         total = 0
         for product in self.products:
             quantity = product.get_quantity()
@@ -44,6 +47,7 @@ class Store:
 
 
     def get_all_products(self):
+        """returns all products from the store"""
         all_products = []
         for product in self.products:
             if product.is_active():
@@ -53,6 +57,7 @@ class Store:
 
 
     def order(self, shopping_list):
+        """gets the shopping list and uses buy method to order get the price of the pruducts. returns total price"""
         total_price = 0.0
         try:
             for product, quantity in shopping_list:

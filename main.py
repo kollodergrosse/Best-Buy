@@ -12,7 +12,7 @@ best_buy = Store(product_list)
 
 
 def show_all_products(best_buy):
-
+    """function shows all products in store. uses method get_all_products() to get all products in store. prints all products in store"""
     products_to_list = best_buy.get_all_products()
 
     print("\n-----------------")
@@ -23,22 +23,24 @@ def show_all_products(best_buy):
 
 
 def get_total_quantity(best_buy):
+    """functions gets the total quantity  of all products in the store from get_total_quantity. prints the total quantity"""
     total = best_buy.get_total_quantity()
     print(f"\nTotal quantity in store: {total}")
 
 
 def make_order(best_buy):
+    """manages the order process of the user. gets inputs from user: which product and how many products. uses the order method from store.py"""
     show_all_products(best_buy)
     order_list = []
     available_products = best_buy.get_all_products()
     print("\nPress 'Enter' twice to finish order process.")
     while True:
-        user_ordered_input = input("Which product # do you want to buy? ")
+        user_ordered_item = input("Which product # do you want to buy? ")
 
-        if user_ordered_input:
+        if user_ordered_item:
             try:
-                if int(user_ordered_input) in range(1, len(available_products) + 1):
-                    chosen_product = available_products[int(user_ordered_input) - 1]
+                if int(user_ordered_item) in range(1, len(available_products) + 1):
+                    chosen_product = available_products[int(user_ordered_item) - 1]
 
                 else:
                     print("Please enter a valid number! ")
@@ -62,17 +64,19 @@ def make_order(best_buy):
             except ValueError as ev:
                 print("Please enter a valid (positive) amount #!", ev)
 
-        if not user_ordered_input and not quantity_of_user_item:
+        if not user_ordered_item and not quantity_of_user_item:
             break
 
     print(f"********\nOrder made! Total payment: ${best_buy.order(order_list)}\n")
 
 
 def end_program(_):
+    """ends the program"""
     sys.exit()
 
 
 def start(best_buy):
+    """shows the menu of the store. user can decide what action to take"""
     actions = {"1" : ["List all products in store", show_all_products],
                "2" : ["Show total amount in store", get_total_quantity],
                "3" : ["Make an order", make_order],

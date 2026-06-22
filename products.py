@@ -9,10 +9,12 @@ class Product:
 
 
     def get_quantity(self):
+        """return the quantity of the product"""
         return self.quantity
 
 
     def set_quantity(self, quantity):
+        """set the quantity of the product"""
         if quantity < 0:
             raise ValueError("Product quantity can't be negative")
 
@@ -23,6 +25,7 @@ class Product:
 
 
     def is_active(self):
+        """check if the product is active"""
         if self.active:
             return True
 
@@ -30,28 +33,35 @@ class Product:
 
 
     def activate(self):
+        """activate the product"""
         self.active = True
 
 
     def deactivate(self):
+        """deactivate the product"""
         self.active = False
 
 
     def show(self):
+        """show the product with the details name, price and quantity"""
         print(f"{self.name}, {self.price}, {self.quantity}")
 
 
     def buy(self, quantity):
-        #is active
-        total = 0.0
-        if quantity < 0:
-            raise ValueError("Product Quantity can't be negative")
+        """buys the product if it is active. returns the total price of the ordered product"""
+        if self.name is self.active:
+            total = 0.0
+            if quantity < 0:
+                raise ValueError("Product Quantity can't be negative")
 
-        if quantity <= self.get_quantity():
-            total += quantity * self.price
-            self.set_quantity((self.get_quantity() - quantity))
+            if quantity <= self.get_quantity():
+                total += quantity * self.price
+                self.set_quantity((self.get_quantity() - quantity))
 
+            else:
+                raise ValueError("Error! Quantity is too large")
+
+            return total
+        
         else:
-            raise ValueError("Error! Quantity is too large")
-
-        return total
+            raise ValueError("Error! Product is not active")
