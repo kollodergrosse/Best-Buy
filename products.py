@@ -49,19 +49,16 @@ class Product:
 
     def buy(self, quantity):
         """buys the product if it is active. returns the total price of the ordered product"""
-        if self.name is self.active:
-            total = 0.0
-            if quantity < 0:
-                raise ValueError("Product Quantity can't be negative")
 
-            if quantity <= self.get_quantity():
-                total += quantity * self.price
-                self.set_quantity((self.get_quantity() - quantity))
+        total = 0.0
+        if quantity < 0:
+            raise ValueError("Product Quantity can't be negative")
 
-            else:
-                raise ValueError("Error! Quantity is too large")
+        if quantity <= self.get_quantity():
+            total += quantity * self.price
+            self.set_quantity((self.get_quantity() - quantity))
 
-            return total
-        
         else:
-            raise ValueError("Error! Product is not active")
+            raise ValueError("Error! Quantity is too large")
+
+        return total
