@@ -1,6 +1,10 @@
 
 class Product:
-
+    """
+    Represents a standard physical product in the store inventory.
+    Manages the core attributes of an item including its name, price,
+    available stock quantity, active status, and any active promotional offer.
+    """
     def __init__(self, name, price, quantity):
         self.name = name
         self.price = price
@@ -9,12 +13,19 @@ class Product:
 
 
     def get_quantity(self):
-        """return the quantity of the product"""
+        """
+        Get the current stock level of the product.
+        Returns:
+            int: The current available quantity.
+        """
         return self.quantity
 
 
     def set_quantity(self, quantity):
-        """set the quantity of the product"""
+        """
+                Update the stock quantity of the product.
+                Automatically deactivates the product if the stock level hits zero.
+        """
         if quantity < 0:
             raise ValueError("Product quantity can't be negative")
 
@@ -25,7 +36,11 @@ class Product:
 
 
     def is_active(self):
-        """check if the product is active"""
+        """
+          Check if the product is currently available for purchase.
+          Returns:
+              bool: True if the product is active, False otherwise.
+          """
         if self.active:
             return True
 
@@ -33,22 +48,31 @@ class Product:
 
 
     def activate(self):
-        """activate the product"""
+        """Change the product's status to active."""
         self.active = True
 
 
     def deactivate(self):
-        """deactivate the product"""
+        """Change the product's status to inactive."""
         self.active = False
 
 
     def show(self):
-        """show the product with the details name, price and quantity"""
+        """Print the primary details of the product."""
         print(f"{self.name}, {self.price}, {self.quantity}")
 
 
     def buy(self, quantity):
-        """buys the product if it is active. returns the total price of the ordered product"""
+        """
+               Process a purchase for a specific quantity of the product.
+               Reduces stock and calculates the final total price.
+               Args:
+                   quantity (int): The number of items to purchase. Must be positive.
+               Returns:
+                   float: The calculated total price for this purchase.
+               Raises:
+                   ValueError: If quantity is negative or exceeds available stock.
+        """
 
         total = 0.0
         if quantity < 0:
